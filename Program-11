@@ -1,0 +1,36 @@
+/*
+Develop a function which throws a division by zero exception and catch it in catch block. Write a
+C++ program to demonstrate usage of try, catch and throw to handle exception.
+*/
+
+#include <iostream>
+#include <stdexcept>
+
+double divide(int numerator, int denominator) {
+    if (denominator == 0) {
+        throw std::logic_error("Division by zero is not allowed");
+    }
+    return static_cast<double>(numerator) / denominator;
+}
+
+int main() {
+    int numerator, denominator;
+
+    try {
+        std::cout << "Enter numerator: ";
+        std::cin >> numerator;
+
+        std::cout << "Enter denominator: ";
+        std::cin >> denominator;
+
+        double result = divide(numerator, denominator);
+        std::cout << "Result of division: " << result << std::endl;
+
+    } catch (const std::logic_error& ex) {
+        std::cerr << "Exception caught: " << ex.what() << std::endl;
+    } catch (...) {
+        std::cerr << "An unexpected exception occurred." << std::endl;
+    }
+
+    return 0;
+}
