@@ -1,0 +1,37 @@
+/*
+Develop a C++ program to create a text file, check file created or not, if created it will write some
+text into the file and then read the text from the file.
+*/
+#include <iostream>
+#include <fstream>
+
+int main() {
+    const char* fileName = "example.txt";
+
+    std::ofstream outputFile(fileName);
+
+    if (!outputFile.is_open()) {
+        std::cerr << "Error creating the file." << std::endl;
+        return 1;
+    }
+
+    outputFile << "Hello, this is some text written to the file." << std::endl;
+
+    outputFile.close();
+
+    std::ifstream inputFile(fileName);
+
+    if (!inputFile.is_open()) {
+        std::cerr << "Error opening the file for reading." << std::endl;
+        return 1;
+    }
+
+    std::string line;
+    while (std::getline(inputFile, line)) {
+        std::cout << "Text read from file: " << line << std::endl;
+    }
+
+    inputFile.close();
+
+    return 0;
+}
