@@ -1,0 +1,29 @@
+/*
+Develop a C++ program that handles array out of bounds exception using C++.
+*/
+#include <iostream>
+#include <stdexcept>
+
+int main() {
+    try {
+        const int arraySize = 5;
+        int myArray[arraySize];
+
+        for (int i = 0; i <= arraySize; ++i) {
+            if (i == arraySize) {
+                throw std::out_of_range("Array index out of bounds exception.");
+            }
+            myArray[i] = i * 2;
+        }
+
+        std::cout << "Array elements: ";
+        for (int i = 0; i < arraySize; ++i) {
+            std::cout << myArray[i] << " ";
+        }
+        std::cout << std::endl;
+    } catch (const std::out_of_range& ex) {
+        std::cerr << "Exception caught: " << ex.what() << std::endl;
+    }
+
+    return 0;
+}
