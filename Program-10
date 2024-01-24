@@ -1,0 +1,50 @@
+/*
+Develop a C++ program to write and read time in/from binary file using fstream
+*/
+
+#include <iostream>
+#include <fstream>
+#include <ctime>
+
+void writeTimeToFile(const char* fileName) {
+    std::ofstream file(fileName, std::ios::binary);
+
+    if (!file.is_open()) {
+        std::cerr << "Error opening file for writing." << std::endl;
+        return;
+    }
+
+    std::time_t currentTime = std::time(nullptr);
+    file.write(reinterpret_cast<const char*>(&currentTime), sizeof(currentTime));
+
+    file.close();
+}
+
+void readTimeFromFile(const char* fileName) {
+    std::ifstream file(fileName, std::ios::binary);
+
+    if (!file.is_open()) {
+        std::cerr << "Error opening file for reading." << std::endl;
+        return;
+    }
+
+    std::time_t storedTime;
+    file.read(reinterpret_cast<char*>(&storedTime), sizeof(storedTime));
+
+    if (file.gcount() == sizeof(storedTime)) {
+        std::cout << "Time read from file: " << std::ctime(&storedTime) << std::endl;
+    } else {
+        std::cerr << "Error reading time from file." << std::endl;
+    }
+
+    file.close();
+}
+
+int main() {
+    const char* fileName = "time_data.dat";
+
+    writeTimeToFile(fileName);
+    readTimeFromFile(fileName);
+
+    return 0;
+}
