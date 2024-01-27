@@ -1,0 +1,72 @@
+/*
+Develop a C++ program to implement Multiple inheritance for performing arithmetic operation of
+two numbers
+*/
+
+#include<iostream>
+using namespace std;
+
+class Arithmetic {
+    int a, b, c;
+public:
+    void getData();
+    int add();
+    int sub();
+    int mul();
+    int division();
+    int moduloDivision();
+    void display();
+};
+
+void Arithmetic::getData() {
+    cout << "\n Enter the two values:";
+    cin >> a >> b;
+}
+
+int Arithmetic::add() {
+    c = a + b;
+    return c;
+}
+
+int Arithmetic::sub() {
+    c = a - b;
+    return c;
+}
+
+int Arithmetic::mul() {
+    c = a * b;
+    return c;
+}
+
+int Arithmetic::division() {
+    c = a / b;
+    return c;
+}
+
+int Arithmetic::moduloDivision() {
+    c = a % b;
+    return c;
+}
+
+class Arith : public Arithmetic {
+public:
+    void display() {
+        cout << "\n Addition\n" << add();
+        cout << "\n Subtraction\n" << sub();
+        cout << "\n Multiplication\n" << mul();
+        cout << "\n Division\n" << division();
+        cout << "\n Modulo Division\n" << moduloDivision();
+    }
+};
+
+int main() {
+    cout << "\n";
+    cout << "\t Arithmetic Operation\n";
+    cout << "\t ********** *********\n";
+
+    Arith a;
+    a.getData();
+    a.display();
+
+    return 0;
+}
