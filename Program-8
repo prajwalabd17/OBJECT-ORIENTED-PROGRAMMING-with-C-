@@ -1,0 +1,57 @@
+/*
+Develop a C++ program using Constructor in Derived classes to initialize alpha, beta and gamma and
+display corresponding values.
+*/
+
+#include <iostream>
+
+class Alpha {
+protected:
+    int alpha;
+
+public:
+    Alpha(int a) : alpha(a) {
+        std::cout << "Alpha constructor called with value: " << alpha << std::endl;
+    }
+
+    void displayAlpha() {
+        std::cout << "Alpha value: " << alpha << std::endl;
+    }
+};
+
+class Beta : public Alpha {
+protected:
+    int beta;
+
+public:
+    Beta(int a, int b) : Alpha(a), beta(b) {
+        std::cout << "Beta constructor called with values: " << alpha << ", " << beta << std::endl;
+    }
+
+    void displayBeta() {
+        displayAlpha();
+        std::cout << "Beta value: " << beta << std::endl;
+    }
+};
+
+class Gamma : public Beta {
+private:
+    int gamma;
+
+public:
+    Gamma(int a, int b, int c) : Beta(a, b), gamma(c) {
+        std::cout << "Gamma constructor called with values: " << alpha << ", " << beta << ", " << gamma << std::endl;
+    }
+
+    void displayGamma() {
+        displayBeta();
+        std::cout << "Gamma value: " << gamma << std::endl;
+    }
+};
+
+int main() {
+    Gamma objGamma(1, 2, 3);
+    objGamma.displayGamma();
+
+    return 0;
+}
