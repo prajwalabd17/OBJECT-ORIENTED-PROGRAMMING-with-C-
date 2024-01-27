@@ -1,0 +1,22 @@
+#include<iostream>
+using namespace std;
+
+class MathOperations {
+public:
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    double add(double a, double b) {
+        return a + b;
+    }
+};
+
+int main() {
+    MathOperations math;
+
+    int intResult = math.add(5, 10);
+    cout << "Integer Addition Result: " << intResult << endl;
+
+    double doubleResult = math.add(3.5, 2.5);
+   
