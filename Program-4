@@ -1,0 +1,71 @@
+/*
+Develop a C++ program for a bank empolyee to print name of the employee, account_no. & balance.
+Print invalid balance if amount<500, Display the same, also display the balance after withdraw and
+deposit.
+*/
+
+#include <iostream>
+#include <string>
+
+class BankEmployee {
+private:
+    std::string name;
+    int accountNo;
+    double balance;
+
+public:
+    BankEmployee(const std::string& employeeName, int accountNumber, double initialBalance)
+        : name(employeeName), accountNo(accountNumber), balance(initialBalance) {}
+
+    void printDetails() const {
+        std::cout << "Employee Name: " << name << std::endl;
+        std::cout << "Account Number: " << accountNo << std::endl;
+        std::cout << "Balance: " << balance << std::endl;
+    }
+
+    void deposit(double amount) {
+        balance += amount;
+        std::cout << "Deposit successful. New Balance: " << balance << std::endl;
+    }
+
+    void withdraw(double amount) {
+        if (balance - amount < 500) {
+            std::cout << "Invalid Balance! Withdrawal not allowed." << std::endl;
+        } else {
+            balance -= amount;
+            std::cout << "Withdrawal successful. New Balance: " << balance << std::endl;
+        }
+    }
+};
+
+int main() {
+    std::string name;
+    int accountNumber;
+    double initialBalance;
+
+    std::cout << "Enter Employee Name: ";
+    std::getline(std::cin, name);
+
+    std::cout << "Enter Account Number: ";
+    std::cin >> accountNumber;
+
+    std::cout << "Enter Initial Balance: ";
+    std::cin >> initialBalance;
+
+    BankEmployee employee(name, accountNumber, initialBalance);
+
+    std::cout << "\nInitial Details:" << std::endl;
+    employee.printDetails();
+
+    double depositAmount, withdrawalAmount;
+
+    std::cout << "\nEnter Deposit Amount: ";
+    std::cin >> depositAmount;
+    employee.deposit(depositAmount);
+
+    std::cout << "\nEnter Withdrawal Amount: ";
+    std::cin >> withdrawalAmount;
+    employee.withdraw(withdrawalAmount);
+
+    return 0;
+}
