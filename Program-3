@@ -1,0 +1,50 @@
+/*
+Develop a C++ program using classes to display student name, roll number, marks obtained in two
+subjects and total score of student
+*/
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Student {
+private:
+    string name;
+    int rollNumber;
+    int marksSubject1;
+    int marksSubject2;
+    int totalScore;
+
+public:
+    void read() {
+        cout << "Enter student name: ";
+        getline(cin, name);
+
+        cout << "Enter roll number: ";
+        cin >> rollNumber;
+
+        cout << "Enter marks for subject 1: ";
+        cin >> marksSubject1;
+
+        cout << "Enter marks for subject 2: ";
+        cin >> marksSubject2;
+
+        totalScore = marksSubject1 + marksSubject2;
+    }
+
+    void display() {
+        cout << "Student Details:" << endl;
+        cout << "Name: " << name << endl;
+        cout << "Roll Number: " << rollNumber << endl;
+        cout << "Marks in Subject 1: " << marksSubject1 << endl;
+        cout << "Marks in Subject 2: " << marksSubject2 << endl;
+        cout << "Total Score: " << totalScore << endl;
+    }
+};
+
+int main() {
+    Student student;
+    student.read();
+    student.display();
+    return 0;
+}
